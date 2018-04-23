@@ -1,10 +1,10 @@
-import React, { Component } from "react"
-import { FormGroup, FormControl, ControlLabel } from "react-bootstrap"
-import LoaderButton from "../components/LoaderButton"
+import React, { Component } from "react";
+import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { API } from "aws-amplify"
 import { s3Upload } from "../libs/awsLib"
-import config from "../config"
-import "./NewNote.css"
+import LoaderButton from "../components/LoaderButton";
+import config from "../config";
+import "./NewNote.css";
 
 export default class NewNote extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ export default class NewNote extends Component {
     this.file = event.target.files[0];
   }
 
-  hhandleSubmit = async event => {
+  handleSubmit = async event => {
     event.preventDefault();
   
     if (this.file && this.file.size > config.MAX_ATTACHMENT_SIZE) {
@@ -58,12 +58,14 @@ export default class NewNote extends Component {
     }
   }
   
+  
+  
   createNote(note) {
     return API.post("notes", "/notes", {
       body: note
     });
-  }
-  
+  }  
+
   render() {
     return (
       <div className="NewNote">
