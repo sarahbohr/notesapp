@@ -61,13 +61,11 @@ export default class Home extends Component {
     this.props.history.push(event.currentTarget.getAttribute("href"));
   }
   
-  
-
   renderLander() {
     return (
       <div className="lander">
-        <h1>Scratch</h1>
-        <p>A simple note taking app</p>
+        <h1>TinyNote</h1>
+        <p>A tiny little note taking app</p>
       </div>
     );
   }

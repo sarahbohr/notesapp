@@ -1,17 +1,18 @@
-import React, { Component, Fragment } from "react"
-import { Link, withRouter } from "react-router-dom"
+import React, { Component, Fragment } from "react";
+import { Auth } from "aws-amplify";
+import { Link, withRouter } from "react-router-dom";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import Routes from "./Routes"
-import { Auth } from "aws-amplify"
+import Routes from "./Routes";
 import "./App.css";
 
 class App extends Component {
   constructor(props) {
     super(props);
-  
+
     this.state = {
-      isAuthenticated: false
+      isAuthenticated: false,
+      isAuthenticating: true
     };
   }
 
@@ -26,26 +27,28 @@ class App extends Component {
         alert(e);
       }
     }
-  
+
     this.setState({ isAuthenticating: false });
-  }  
-  
+  }
+
   userHasAuthenticated = authenticated => {
     this.setState({ isAuthenticated: authenticated });
   }
 
-  hhandleLogout = async event => {
-    await Auth.signOut()
-    this.userHasAuthenticated(false)
-    this.props.history.push("/login")
-  }  
-  
+  handleLogout = async event => {
+    await Auth.signOut();
+
+    this.userHasAuthenticated(false);
+
+    this.props.history.push("/login");
+  }
+
   render() {
     const childProps = {
       isAuthenticated: this.state.isAuthenticated,
       userHasAuthenticated: this.userHasAuthenticated
-    }
-  
+    };
+
     return (
       !this.state.isAuthenticating &&
       <div className="App container">
@@ -75,8 +78,7 @@ class App extends Component {
         <Routes childProps={childProps} />
       </div>
     );
-  }  
+  }
 }
 
-export default withRouter(App)
-
+export default withRouter(App);

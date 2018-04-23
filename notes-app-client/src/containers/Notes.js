@@ -92,6 +92,7 @@ export default class Notes extends Component {
       });
       this.props.history.push("/");
     } catch (e) {
+      console.log('Error:', e)
       alert(e);
       this.setState({ isLoading: false });
     }
