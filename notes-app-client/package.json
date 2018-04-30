@@ -17,8 +17,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "predeploy": "npm run build",
-    "deploy": "aws s3 sync build/ s3://notesapp-up --delete",
-    "postdeploy": "aws cloudfront create-invalidation --distribution-id E1KTCKT9SOAHBW --paths '/*' && aws cloudfront create-invalidation --distribution-id E3MQXGQ47VCJB0 --paths '/*'",
+    "deploy": "aws s3 sync build/ s3://ssbnotes.com --delete",
+    "postdeploy": "aws cloudfront create-invalidation --distribution-id E3GX0Y39QA107R --paths '/*' && aws cloudfront create-invalidation --distribution-id E3GX0Y39QA107R --paths '/*'",
+
     "eject": "react-scripts eject"
   }
 }
